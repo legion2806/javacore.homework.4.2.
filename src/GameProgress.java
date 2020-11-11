@@ -1,7 +1,5 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -30,10 +28,10 @@ public class GameProgress implements Serializable {
                 '}';
     }
 
-    public void saveGame(String s) {
+    public void saveGame(String stats) {
 
         try (ObjectOutputStream vol1 = new ObjectOutputStream
-                (new FileOutputStream(s))) {
+                (new FileOutputStream(stats))) {
 
             vol1.writeObject(health);
             vol1.writeObject(weapons);
@@ -47,27 +45,24 @@ public class GameProgress implements Serializable {
         }
     }
 
-    public void zipFiles(String s, String b){
+    List<String> zipFiles(String txtFiles){
 
-        String filename = b;
         try(ZipOutputStream zout = new ZipOutputStream
-                (new FileOutputStream(s));
-            FileInputStream fis= new FileInputStream(filename);)
+                (new FileOutputStream("/Users/benya/IdeaProjects/java.core.homework.4.1./Games/savegames/zip.zip"));
+            FileInputStream fis= new FileInputStream(txtFiles);)
         {
             ZipEntry entry1=new ZipEntry("notes.txt");
             zout.putNextEntry(entry1);
-            // считываем содержимое файла в массив byte
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
-            // добавляем содержимое к архиву
             zout.write(buffer);
-            // закрываем текущую запись для новой записи
             zout.closeEntry();
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
         }
+        return null;
     }
 
 }

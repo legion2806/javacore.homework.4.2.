@@ -1,5 +1,6 @@
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collections;
 
 public class Main {
 
@@ -10,8 +11,7 @@ public class Main {
         GameProgress playerVasya = new GameProgress(400, 1,4,236);
 
         playerSasha.saveGame("/Users/benya/IdeaProjects/java.core.homework.4.1./Games/savegames/saveStats");
-        playerSasha.zipFiles("/Users/benya/IdeaProjects/java.core.homework.4.1./Games/savegames/zip.zip",
-                "/Users/benya/IdeaProjects/java.core.homework.4.1./Games/savegames/saveStats");
+        playerSasha.zipFiles("/Users/benya/IdeaProjects/java.core.homework.4.1./Games/savegames/saveStats");
 
     }
 
